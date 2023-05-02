@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiAppSample.ViewModels"
+             x:Class="MauiAppSample.Views.MainPage"
+             x:DataType="viewmodel:MainPageViewModel"
+             Title="MAUI App">
+    <ScrollView>
+        <Grid        
+        RowDefinitions="Auto, *"
+        ColumnDefinitions=".75*, .25*"
+        Padding="10"
+        RowSpacing="10"
+        ColumnSpacing="10">
+            <Entry
+                Grid.Row="0"
+                Grid.Column="0"
+                Placeholder="Enter message"
+                Text="{Binding InputText}"
+                />
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="Send"
+                Command="{Binding SendMessageCommand}"
+                />
+            <Label
+                Grid.Row="1"
+                Text="{Binding ReplyText}"
+                />
+        </Grid>
+    </ScrollView>
+</ContentPage>
