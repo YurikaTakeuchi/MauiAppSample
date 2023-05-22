@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MauiAppSample/Properties/Resources.resx
+/MauiAppSample/Properties/Resources.Designer.cs
