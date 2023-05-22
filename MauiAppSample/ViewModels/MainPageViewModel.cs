@@ -2,9 +2,7 @@
 using Azure.AI.OpenAI;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Runtime.CompilerServices;
-using Windows.Media.Protection.PlayReady;
+using MauiAppSample.Properties;
 
 namespace MauiAppSample.ViewModels
 {
@@ -22,8 +20,8 @@ namespace MauiAppSample.ViewModels
         public MainPageViewModel()
         {
             _openAIClient = new OpenAIClient(
-                new Uri("EndPoint"),
-                new AzureKeyCredential("Key"));
+                new Uri(Resources.END_POINT),
+                new AzureKeyCredential(Resources.API_KEY));
         }
 
         [RelayCommand]
@@ -55,7 +53,7 @@ namespace MauiAppSample.ViewModels
         private async Task<string> GetReplyAsync(string prompt)
         {
             var response = await _openAIClient.GetChatCompletionsAsync(
-                "Model",
+                Resources.MODEL_NAME,
                 new ChatCompletionsOptions()
                 {
                     Messages =
