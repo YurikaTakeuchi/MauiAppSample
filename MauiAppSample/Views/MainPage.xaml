@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:MauiAppSample.ViewModels"
+             xmlns:model="clr-namespace:MauiAppSample.Models"
              x:Class="MauiAppSample.Views.MainPage"
              x:DataType="viewmodel:MainPageViewModel"
              Title="MAUI App">
@@ -24,10 +25,24 @@
                 Text="Send"
                 Command="{Binding SendMessageCommand}"
                 />
-            <Label
+            <CollectionView 
                 Grid.Row="1"
-                Text="{Binding ReplyText}"
-                />
+                Grid.ColumnSpan="2"
+                ItemsSource="{Binding Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:MessageItem">
+                        <Frame
+                            Margin="0, 2">
+                            <Grid>
+                                <StackLayout >
+                                    <Label Text="{Binding Date}" FontSize="Caption"/>
+                                    <Label Text="{Binding Content}" FontSize="20"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ScrollView>
 </ContentPage>

@@ -2,7 +2,9 @@
 using Azure.AI.OpenAI;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MauiAppSample.Models;
 using MauiAppSample.Properties;
+using System.Collections.ObjectModel;
 
 namespace MauiAppSample.ViewModels
 {
@@ -14,6 +16,9 @@ namespace MauiAppSample.ViewModels
 
         [ObservableProperty]
         private string _replyText = "ReplyMessage";
+
+        [ObservableProperty]
+        private ObservableCollection<MessageItem> _items = new();
 
         private OpenAIClient _openAIClient;
 
@@ -34,10 +39,14 @@ namespace MauiAppSample.ViewModels
 
             ValidateAllProperties();
 
+
+            Items.Add(new MessageItem(InputText));
+
             // ChatGPTに送信する
             try
             {
                 ReplyText = await GetReplyAsync(InputText);
+                Items.Add(new MessageItem(ReplyText));
             }
             catch (Exception ex)
             {
