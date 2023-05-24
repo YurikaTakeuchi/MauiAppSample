@@ -34,6 +34,7 @@ namespace MauiAppSample.ViewModels
         {
             if (string.IsNullOrWhiteSpace(InputText))
             {
+                await App.AlertService.ShowAlertAsync("Error", "テキストを入力してください");
                 return;
             }
 

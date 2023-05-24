@@ -1,4 +1,5 @@
-﻿using MauiAppSample.ViewModels;
+﻿using MauiAppSample.Services;
+using MauiAppSample.ViewModels;
 using MauiAppSample.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Networking;
@@ -23,6 +24,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<MainPageViewModel>();
 
 		builder.Services.AddSingleton<MainPage>();
+
+		builder.Services.AddSingleton<IAlertService, AlertService>();
 
 #if DEBUG
 		builder.Logging.AddDebug();
