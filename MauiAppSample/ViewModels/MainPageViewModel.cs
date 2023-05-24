@@ -55,6 +55,13 @@ namespace MauiAppSample.ViewModels
             }
         }
 
+        [RelayCommand]
+                
+        private async Task CopyToClipboard(string content)
+        {
+            await Clipboard.SetTextAsync(content);
+        }
+
         /// <summary>
         /// メッセージを送信します
         /// </summary>

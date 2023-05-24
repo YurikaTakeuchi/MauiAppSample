@@ -33,11 +33,18 @@
                     <DataTemplate x:DataType="model:MessageItem">
                         <Frame
                             Margin="0, 2">
-                            <Grid>
+                            <Grid ColumnDefinitions=".9*, .1*">
                                 <StackLayout >
                                     <Label Text="{Binding Date}" FontSize="Caption"/>
                                     <Label Text="{Binding Content}" FontSize="20"/>
                                 </StackLayout>
+                                <Button 
+                                    VerticalOptions="End"
+                                    Grid.Column="1"
+                                    HeightRequest="10"
+                                    Text="Copy" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=CopyToClipboardCommand}"
+                                    CommandParameter="{Binding Content}"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>
