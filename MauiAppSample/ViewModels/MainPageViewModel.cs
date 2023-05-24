@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiAppSample.Models;
 using MauiAppSample.Properties;
+using MauiAppSample.Services;
 using System.Collections.ObjectModel;
 
 namespace MauiAppSample.ViewModels
@@ -22,8 +23,13 @@ namespace MauiAppSample.ViewModels
 
         private OpenAIClient _openAIClient;
 
-        public MainPageViewModel()
+        private IAlertService _alertService;
+
+
+        public MainPageViewModel(IAlertService alertService)
         {
+            _alertService = alertService;
+
             _openAIClient = new OpenAIClient(
                 new Uri(Resources.END_POINT),
                 new AzureKeyCredential(Resources.API_KEY));
@@ -34,7 +40,7 @@ namespace MauiAppSample.ViewModels
         {
             if (string.IsNullOrWhiteSpace(InputText))
             {
-                await App.AlertService.ShowAlertAsync("Error", "テキストを入力してください");
+                await _alertService.ShowAlertAsync("Error", "テキストを入力してください");
                 return;
             }
 
