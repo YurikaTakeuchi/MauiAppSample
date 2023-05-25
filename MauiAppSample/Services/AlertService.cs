@@ -9,7 +9,7 @@ namespace MauiAppSample.Services
     /// <summary>
     /// アラートを表示する
     /// </summary>
-    internal class AlertService : IAlertService
+    public class AlertService : IAlertService
     {
         /// <summary>
         /// メインページにアラートを表示する
